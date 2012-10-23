@@ -19,7 +19,8 @@ namespace Borderlands2D
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Vector2 playerPosition = Vector2.Zero;
+        Vector2 playerPosition;
+        Texture2D playerSprite;
 
         public Game1()
             : base()
@@ -31,7 +32,7 @@ namespace Borderlands2D
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
+        /// related content. Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
@@ -39,6 +40,8 @@ namespace Borderlands2D
             // TODO: Add your initialization logic here
 
             base.Initialize();
+
+            playerPosition = new Vector2(100, 100);
         }
 
         /// <summary>
@@ -51,6 +54,8 @@ namespace Borderlands2D
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            playerSprite = this.Content.Load<Texture2D>("Sprites/Player");
         }
 
         /// <summary>
@@ -87,7 +92,13 @@ namespace Borderlands2D
 
             // TODO: Add your drawing code here
 
+            spriteBatch.Begin();
+            spriteBatch.Draw(playerSprite, playerPosition, Color.White);
+            spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }
 }
+
+
