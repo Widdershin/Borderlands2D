@@ -21,6 +21,7 @@ namespace Borderlands2D
 
         Vector2 playerPosition;
         Texture2D playerSprite;
+        Player player;
 
         public Game1()
             : base()
@@ -42,6 +43,7 @@ namespace Borderlands2D
             base.Initialize();
 
             playerPosition = new Vector2(100, 100);
+            player = new Player();
         }
 
         /// <summary>
@@ -55,6 +57,7 @@ namespace Borderlands2D
 
             // TODO: use this.Content to load your game content here
 
+            
             playerSprite = this.Content.Load<Texture2D>("Sprites/Player");
         }
 
