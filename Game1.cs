@@ -20,8 +20,12 @@ namespace Borderlands2D
         SpriteBatch spriteBatch;
 
         Vector2 playerPosition;
+        Vector2 playerSpeed;
         Texture2D playerSprite;
         Player player;
+
+
+        KeyboardState oldState;
 
         public Game1()
             : base()
@@ -40,10 +44,13 @@ namespace Borderlands2D
         {
             // TODO: Add your initialization logic here
 
-            base.Initialize();
-
             playerPosition = new Vector2(100, 100);
+
             player = new Player();
+            player.position = playerPosition;
+            player.spritePath = "Sprites/Player";
+
+            base.Initialize();
         }
 
         /// <summary>
@@ -58,7 +65,7 @@ namespace Borderlands2D
             // TODO: use this.Content to load your game content here
 
             
-            playerSprite = this.Content.Load<Texture2D>("Sprites/Player");
+            player.LoadContent(this.Content);
         }
 
         /// <summary>
@@ -82,7 +89,37 @@ namespace Borderlands2D
 
             // TODO: Add your update logic here
 
+            playerSpeed = Vector2.Zero;
+
+            UpdateInput();
+
+            playerPosition += playerSpeed;
+
             base.Update(gameTime);
+        }
+
+        private void UpdateInput()
+        {
+            KeyboardState newState = Keyboard.GetState();
+
+            if (newState.IsKeyDown(Keys.Up))
+            {
+                playerSpeed.Y = -1;
+            }
+            if (newState.IsKeyDown(Keys.Down))
+            {
+                playerSpeed.Y = 1;
+            }
+            if (newState.IsKeyDown(Keys.Left))
+            {
+                playerSpeed.X = -1;
+            }
+            if (newState.IsKeyDown(Keys.Right))
+            {
+                playerSpeed.X = 1;
+            }
+
+            oldState = newState;
         }
 
         /// <summary>
@@ -96,7 +133,7 @@ namespace Borderlands2D
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
-            spriteBatch.Draw(playerSprite, playerPosition, Color.White);
+            player.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

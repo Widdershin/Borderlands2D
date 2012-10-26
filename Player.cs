@@ -4,17 +4,20 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace Borderlands2D
 {
-    class Player
+    public class Player
     {
-        Vector2 playerPosition;
+        public Vector2 position { get; set; }
+        public String spritePath { get; set; }
+
         Texture2D playerSprite;
 
-        public void Create(Texture2D sprite, Vector2 position)
+        public void LoadContent(ContentManager contentManager)
         {
-            
+            playerSprite = contentManager.Load<Texture2D>(spritePath);
         }
 
         public void Update()
@@ -22,9 +25,9 @@ namespace Borderlands2D
             
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
-        
+            spriteBatch.Draw(playerSprite, position, Color.White);
         }
 
     }
