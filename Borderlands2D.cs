@@ -14,23 +14,16 @@ namespace Borderlands2D
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Game
+    public class Borderlands2D : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        GraphicsDeviceManager _graphics;
+        SpriteBatch _spriteBatch;
 
-        Vector2 playerPosition;
-        Vector2 playerSpeed;
-        Texture2D playerSprite;
-        Player player;
+        Player _player;
 
-
-        KeyboardState oldState;
-
-        public Game1()
-            : base()
+        public Borderlands2D()
         {
-            graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -44,12 +37,8 @@ namespace Borderlands2D
         {
             // TODO: Add your initialization logic here
 
-            playerPosition = new Vector2(100, 100);
-
-            player = new Player();
-            player.position = playerPosition;
-            player.spritePath = "Sprites/Player";
-
+            _player = new Player(new Vector2(100, 100), "Sprites/Player");
+            
             base.Initialize();
         }
 
@@ -60,12 +49,11 @@ namespace Borderlands2D
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-
             
-            player.LoadContent(this.Content);
+            _player.LoadContent(Content);
         }
 
         /// <summary>
@@ -89,37 +77,9 @@ namespace Borderlands2D
 
             // TODO: Add your update logic here
 
-            playerSpeed = Vector2.Zero;
-
-            UpdateInput();
-
-            playerPosition += playerSpeed;
+            _player.Update();
 
             base.Update(gameTime);
-        }
-
-        private void UpdateInput()
-        {
-            KeyboardState newState = Keyboard.GetState();
-
-            if (newState.IsKeyDown(Keys.Up))
-            {
-                playerSpeed.Y = -1;
-            }
-            if (newState.IsKeyDown(Keys.Down))
-            {
-                playerSpeed.Y = 1;
-            }
-            if (newState.IsKeyDown(Keys.Left))
-            {
-                playerSpeed.X = -1;
-            }
-            if (newState.IsKeyDown(Keys.Right))
-            {
-                playerSpeed.X = 1;
-            }
-
-            oldState = newState;
         }
 
         /// <summary>
@@ -132,9 +92,11 @@ namespace Borderlands2D
 
             // TODO: Add your drawing code here
 
-            spriteBatch.Begin();
-            player.Draw(spriteBatch);
-            spriteBatch.End();
+            _spriteBatch.Begin();
+
+            _player.Draw(_spriteBatch);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
