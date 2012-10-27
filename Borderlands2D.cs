@@ -14,17 +14,16 @@ namespace Borderlands2D
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Game
+    public class Borderlands2D : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        GraphicsDeviceManager _graphics;
+        SpriteBatch _spriteBatch;
 
-        Player player;
+        Player _player;
 
-        public Game1()
-            : base()
+        public Borderlands2D()
         {
-            graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -38,7 +37,7 @@ namespace Borderlands2D
         {
             // TODO: Add your initialization logic here
 
-            player = new Player(new Vector2(100, 100), "Sprites/Player");
+            _player = new Player(new Vector2(100, 100), "Sprites/Player");
             
             base.Initialize();
         }
@@ -50,11 +49,11 @@ namespace Borderlands2D
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
             
-            player.LoadContent(this.Content);
+            _player.LoadContent(Content);
         }
 
         /// <summary>
@@ -78,7 +77,7 @@ namespace Borderlands2D
 
             // TODO: Add your update logic here
 
-            player.Update();
+            _player.Update();
 
             base.Update(gameTime);
         }
@@ -93,11 +92,11 @@ namespace Borderlands2D
 
             // TODO: Add your drawing code here
 
-            spriteBatch.Begin();
+            _spriteBatch.Begin();
 
-            player.Draw(spriteBatch);
+            _player.Draw(_spriteBatch);
 
-            spriteBatch.End();
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
