@@ -11,7 +11,7 @@ namespace Borderlands2D.Input
             set { _inputHandler = value; }
         }
 
-        public static bool IsActive(Inputs input)
+        public static bool IsActive(InputMethod input)
         {
             return _inputHandler.IsActive(input);
         }
