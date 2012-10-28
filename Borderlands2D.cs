@@ -1,6 +1,8 @@
 ﻿#region Using Statements
 using System;
 using System.Collections.Generic;
+using Borderlands2D.Input;
+using Borderlands2D.Input.InputHandlers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,11 +20,9 @@ namespace Borderlands2D
     {
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
-
         Player _player;
 
         public Borderlands2D()
-            : base()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -37,7 +37,9 @@ namespace Borderlands2D
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            #if WINDOWS || LINUX || MONOMAC
+                InputState.InputHandler = new KeyBoardAndMouse();
+            #endif
             _player = new Player(new Vector2(100, 100), "Sprites/Player");
             
             base.Initialize();
@@ -54,7 +56,7 @@ namespace Borderlands2D
 
             // TODO: use this.Content to load your game content here
             
-            _player.LoadContent(this.Content);
+            _player.LoadContent(Content);
         }
 
         /// <summary>
@@ -77,7 +79,7 @@ namespace Borderlands2D
                 Exit();
 
             // TODO: Add your update logic here
-
+            Input.InputState.Update(gameTime);
             _player.Update();
 
             base.Update(gameTime);
