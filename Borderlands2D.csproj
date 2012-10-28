@@ -50,8 +50,13 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Input\InputState.cs" />
+    <Compile Include="Input\InputHandlers\IInputHandler.cs" />
+    <Compile Include="Input\InputHandlers\KeyBoardAndMouse.cs" />
+    <Compile Include="Input\InputMethod.cs" />
+    <Compile Include="Input\Inputs.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="Borderlands2D.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

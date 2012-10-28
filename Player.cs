@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Borderlands2D.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -30,27 +31,17 @@ namespace Borderlands2D
 
         public void Update()
         {
-            KeyboardState ks = Keyboard.GetState();
-
-            if (ks.IsKeyDown(Keys.W))
-            {
+            if (InputState.IsActive(Inputs.Forward))
                 Position.Y -= speed;
-            }
 
-            if (ks.IsKeyDown(Keys.S))
-            {
+            if (InputState.IsActive(Inputs.Back))
                 Position.Y += speed;
-            }
 
-            if (ks.IsKeyDown(Keys.A))
-            {
+            if (InputState.IsActive(Inputs.Left))
                 Position.X -= speed;
-            }
 
-            if (ks.IsKeyDown(Keys.D))
-            {
+            if (InputState.IsActive(Inputs.Right))
                 Position.X += speed;
-            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
