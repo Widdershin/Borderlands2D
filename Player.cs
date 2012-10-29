@@ -1,53 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Borderlands2D.Input;
+﻿using Borderlands2D.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Input;
 
 namespace Borderlands2D
 {
-    public class Player
+    public class Player : IEntity
     {
-        public Vector2 Position;
-        public String SpritePath;
+        private const float Speed = 2f;
 
-        Texture2D sprite;
-        float speed = 2f;
+        private Vector2 _position;
 
-        public Player(Vector2 position, String spritePath)
+        public Player(Vector2 position)
         {
-            Position = position;
-            SpritePath = spritePath;
+            _position = position;
+            
         }
 
-        public void LoadContent(ContentManager contentManager)
+        #region IEntity Members
+
+        public Vector2 Position
         {
-            sprite = contentManager.Load<Texture2D>(SpritePath);
+            get { return _position; }
         }
 
-        public void Update()
+        public Texture2D Texture { get; private set; }
+
+        public void Update(GameTime time)
         {
             if (InputState.IsActive(Inputs.Forward))
-                Position.Y -= speed;
+                _position.Y -= Speed;
 
             if (InputState.IsActive(Inputs.Back))
-                Position.Y += speed;
+                _position.Y += Speed;
 
             if (InputState.IsActive(Inputs.Left))
-                Position.X -= speed;
+                _position.X -= Speed;
 
             if (InputState.IsActive(Inputs.Right))
-                Position.X += speed;
+                _position.X += Speed;
         }
+
+        #endregion
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, Position, Color.White);
+            spriteBatch.Draw(Texture, Position, Color.White);
         }
-
     }
 }
