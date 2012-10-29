@@ -13,7 +13,7 @@ namespace Borderlands2D
         public Player(Vector2 position)
         {
             _position = position;
-            
+            Texture = TextureManager.Get("Player");
         }
 
         #region IEntity Members

@@ -50,6 +50,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="TextureManager.cs" />
+    <Compile Include="IEntity.cs" />
     <Compile Include="Input\InputState.cs" />
     <Compile Include="Input\InputHandlers\IInputHandler.cs" />
     <Compile Include="Input\InputHandlers\KeyBoardAndMouse.cs" />

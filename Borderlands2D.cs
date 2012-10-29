@@ -1,6 +1,7 @@
 ﻿#region Using Statements
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Borderlands2D.Input;
 using Borderlands2D.Input.InputHandlers;
 using Microsoft.Xna.Framework;
@@ -40,9 +41,16 @@ namespace Borderlands2D
             #if WINDOWS || LINUX || MONOMAC
                 InputState.InputHandler = new KeyBoardAndMouse();
             #endif
-            _player = new Player(new Vector2(100, 100), "Sprites/Player");
             
             base.Initialize();
+        }
+
+        /// <summary>
+        /// Runs after LoadContent() has run. Add any init logic in there that depends on content being loaded
+        /// </summary>
+        private void PostInit()
+        {
+            _player = new Player(new Vector2(100, 100));    
         }
 
         /// <summary>
@@ -54,9 +62,8 @@ namespace Borderlands2D
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            
-            _player.LoadContent(Content);
+            TextureManager.LoadContent(Content, Path.Combine(new[] {Directory.GetCurrentDirectory(), "Content", "Sprites"}));
+            PostInit();
         }
 
         /// <summary>
@@ -65,7 +72,7 @@ namespace Borderlands2D
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            Content.Unload();
         }
 
         /// <summary>
@@ -79,8 +86,8 @@ namespace Borderlands2D
                 Exit();
 
             // TODO: Add your update logic here
-            Input.InputState.Update(gameTime);
-            _player.Update();
+            InputState.Update(gameTime);
+            _player.Update(gameTime);
 
             base.Update(gameTime);
         }
