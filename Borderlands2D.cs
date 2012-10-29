@@ -40,6 +40,7 @@ namespace Borderlands2D
             // TODO: Add your initialization logic here
             #if WINDOWS || LINUX || MONOMAC
                 InputState.InputHandler = new KeyBoardAndMouse();
+                TextureManager.RootDirectory = Path.Combine(new[] {Directory.GetCurrentDirectory(), "Content", "Sprites"});
             #endif
             
             base.Initialize();
@@ -62,7 +63,7 @@ namespace Borderlands2D
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            TextureManager.LoadContent(Content, Path.Combine(new[] {Directory.GetCurrentDirectory(), "Content", "Sprites"}));
+            TextureManager.LoadContent(Content);
             PostInit();
         }
 
