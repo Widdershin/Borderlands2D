@@ -9,7 +9,7 @@ namespace Borderlands2D
     public class Player : IEntity
     {
         private const float Speed = 2f;
-        private float Rotation;
+        private float _rotation;
         private Vector2 SpriteOffset = new Vector2(16, 32);
         
 
@@ -47,16 +47,22 @@ namespace Borderlands2D
                 _position.X += Speed;
 
             MouseState ms = Mouse.GetState();
+<<<<<<< HEAD
             double mx = ms.Y - Position.Y;
             double my = ms.X - Position.X;
             Rotation = (float)Math.Atan2(mx, my);
+=======
+            Double mx = ms.Y - Position.Y;
+            Double my = ms.X - Position.X;
+            _rotation = (float)Math.Atan2(mx, my);
+>>>>>>> 58ea5e79724e3246280bc527fa70e43e61109230
         }
 
         #endregion
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, null, Color.White, Rotation, SpriteOffset, new Vector2(1, 1), SpriteEffects.None, 0f);
+            spriteBatch.Draw(Texture, Position, null, Color.White, _rotation, SpriteOffset, new Vector2(1, 1), SpriteEffects.None, 0f);
         }
     }
 }
