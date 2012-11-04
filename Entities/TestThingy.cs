@@ -9,10 +9,6 @@ namespace Borderlands2D.Entities
 {
     class TestThingy : Entity
     {
-        static TestThingy()
-        {
-            EntityRegistry.Register(typeof(TestThingy));
-        }
 
         public TestThingy()
         {
