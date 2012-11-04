@@ -14,10 +14,10 @@ namespace Borderlands2D.ECS
             Components = new List<Component>();
         }
 
-        public Component GetComponent<T>()
+        public T GetComponent<T>() where T : Component
         {
             var type = typeof (T);
-            return Components.FirstOrDefault(comp => comp.GetType() == type);
+            return (T)Components.FirstOrDefault(comp => comp.GetType() == type);
         }
     }
 }
