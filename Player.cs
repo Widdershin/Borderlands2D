@@ -1,12 +1,17 @@
-﻿using Borderlands2D.Input;
+﻿using System;
+using Borderlands2D.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Borderlands2D
 {
     public class Player : IEntity
     {
         private const float Speed = 2f;
+        private float Rotation;
+        private Vector2 SpriteOffset = new Vector2(16, 32);
+        
 
         private Vector2 _position;
 
@@ -34,17 +39,24 @@ namespace Borderlands2D
                 _position.Y += Speed;
 
             if (InputState.IsActive(Inputs.Left))
+            {
                 _position.X -= Speed;
+            }
 
             if (InputState.IsActive(Inputs.Right))
                 _position.X += Speed;
+
+            MouseState ms = Mouse.GetState();
+            Double mx = ms.Y - Position.Y;
+            Double my = ms.X - Position.X;
+            Rotation = (float)Math.Atan2(mx, my);
         }
 
         #endregion
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, Color.White);
+            spriteBatch.Draw(Texture, Position, null, Color.White, Rotation, SpriteOffset, new Vector2(1, 1), SpriteEffects.None, 0f);
         }
     }
 }
