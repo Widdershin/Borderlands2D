@@ -76,7 +76,6 @@ namespace Borderlands2D
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            RenderSystem.SpriteBatch = _spriteBatch;
             TextureManager.LoadContent(Content);
             PostInit();
         }
@@ -120,7 +119,7 @@ namespace Borderlands2D
             _spriteBatch.Begin();
 
 //            _player.Draw(_spriteBatch);
-
+            RenderSystem.Get.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
