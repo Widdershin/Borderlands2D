@@ -1,0 +1,33 @@
+ECS System
+
+Systems
+	- Systems take in Entities with a certain combination of Components
+	- Systems process the Entities and provide the functionality they require
+	- Any Data required is stored in the Components that the Entities contain
+
+Components
+	- Components contain Data
+	- Data is used by Systems to provide functionality to Entities that contain the Components
+
+Entities
+	- Entities hold components which denote required functionality
+	- Components could be Position, Velocity, Health, Sprite, AnimatedSprite etc
+	
+SystemsRegistry
+	- Systems get registered on Game startup
+	- Handles processing of individual systems
+	- Handles insertion of newly created Entities into any Systems that accept them
+	- Handles removal of removed entities from Systems
+
+EntityRegistry
+	- Handles binding of components to entities for construction
+	- Handles creation of entities and insertion of components
+	- Processes requests for new entities
+	- Processes removal operations for entities
+	- Notifies SystemsRegistry on removal/new entity requests so it can remove/add
+	
+System
+	- Contains List of all live Entities that meet the Component requirements
+	- Updates and Processes entities
+	- Tells SystemsRegistry
+	

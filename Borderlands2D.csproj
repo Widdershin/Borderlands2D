@@ -50,6 +50,17 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ECS\Component.cs" />
+    <Compile Include="ECS\Components\Sprite.cs" />
+    <Compile Include="ECS\Entity.cs" />
+    <Compile Include="ECS\EntityRegistry.cs" />
+    <Compile Include="ECS\EntitySystem.cs" />
+    <Compile Include="ECS\SystemsRegistry.cs" />
+    <Compile Include="ECS\Components\Position.cs" />
+    <Compile Include="ECS\Components\Velocity.cs" />
+    <Compile Include="ECS\Systems\MovementSystem.cs" />
+    <Compile Include="ECS\Systems\RenderSystem.cs" />
+    <Compile Include="Entities\TestThingy.cs" />
     <Compile Include="TextureManager.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Input\InputState.cs" />
@@ -111,6 +122,7 @@
       <Name>Lidgren.Network.Windows</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
