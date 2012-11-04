@@ -1,6 +1,9 @@
 ﻿#region Using Statements
 
+using System;
+using System.Collections.Generic;
 using System.IO;
+using Borderlands2D.ECS;
 using Borderlands2D.Input;
 using Borderlands2D.Input.InputHandlers;
 using Microsoft.Xna.Framework;
@@ -39,7 +42,6 @@ namespace Borderlands2D
                 InputState.InputHandler = new KeyBoardAndMouse();
                 TextureManager.RootDirectory = Path.Combine(new[] {Directory.GetCurrentDirectory(), "Content", "Sprites"});
             #endif
-            
             base.Initialize();
         }
 
@@ -110,5 +112,3 @@ namespace Borderlands2D
         }
     }
 }
-
-
