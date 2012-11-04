@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Borderlands2D.Entities;
 
 namespace Borderlands2D.ECS
 {
@@ -9,12 +10,19 @@ namespace Borderlands2D.ECS
     {
         private static readonly HashSet<Type> REGISTERED_TYPES = new HashSet<Type>(); 
 
-        public static T CreateEntity<T>()
+        public static T CreateEntity<T>() where T : Entity
         {
             var type = typeof (T);
             if(!REGISTERED_TYPES.Contains(type))
                 throw new ArgumentException("Type is not registered as an entity!");
-            return Activator.CreateInstance<T>();
+            var instance = Activator.CreateInstance<T>();
+            SystemsRegistry.AddEntity(instance);
+            return instance;
+        }
+
+        public static void Register(Type e)
+        {
+            REGISTERED_TYPES.Add(e);
         }
     }
 }

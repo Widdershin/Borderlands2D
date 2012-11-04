@@ -3,7 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using Borderlands2D.ECS;
+using Borderlands2D.ECS.Systems;
+using Borderlands2D.Entities;
 using Borderlands2D.Input;
 using Borderlands2D.Input.InputHandlers;
 using Microsoft.Xna.Framework;
@@ -27,6 +31,16 @@ namespace Borderlands2D
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            var systems = from t in Assembly.GetExecutingAssembly().GetTypes()
+                    where t.IsClass && t.Namespace == "Borderlands2D.ECS.Systems"
+                    select t;
+            var entities = from t in Assembly.GetExecutingAssembly().GetTypes()
+                           where t.IsClass && t.Namespace == "Borderlands2D.Entities"
+                           select t;
+            foreach (var system in systems)
+                Activator.CreateInstance(system);
+            foreach (var entity in entities)
+                EntityRegistry.Register(entity);
         }
 
         /// <summary>
@@ -50,7 +64,8 @@ namespace Borderlands2D
         /// </summary>
         private void PostInit()
         {
-            _player = new Player(new Vector2(100, 100));    
+            _player = new Player(new Vector2(100, 100));
+            EntityRegistry.CreateEntity<TestThingy>();
         }
 
         /// <summary>
@@ -61,7 +76,7 @@ namespace Borderlands2D
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            RenderSystem.SpriteBatch = _spriteBatch;
             TextureManager.LoadContent(Content);
             PostInit();
         }
@@ -87,8 +102,8 @@ namespace Borderlands2D
 
             // TODO: Add your update logic here
             InputState.Update(gameTime);
-            _player.Update(gameTime);
-
+//            _player.Update(gameTime);
+            SystemsRegistry.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -104,7 +119,7 @@ namespace Borderlands2D
 
             _spriteBatch.Begin();
 
-            _player.Draw(_spriteBatch);
+//            _player.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

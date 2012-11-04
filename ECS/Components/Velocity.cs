@@ -11,9 +11,14 @@ namespace Borderlands2D.ECS.Components
             Vector = vector;
         }
 
-        public Velocity()
+        public Velocity(int x, int y)
         {
             Vector = new Vector2(0, 0);
+        }
+
+        public Velocity() : this(0, 0)
+        {
+            
         }
     }
 }

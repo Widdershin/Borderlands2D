@@ -11,7 +11,7 @@ namespace Borderlands2D
     /// </summary>
     public static class Program
     {
-        private static Borderlands2D game;
+        private static Borderlands2D _game;
 
         /// <summary>
         /// The main entry point for the application.
@@ -19,8 +19,9 @@ namespace Borderlands2D
         [STAThread]
         static void Main()
         {
-            game = new Borderlands2D();
-            game.Run();
+            _game = new Borderlands2D();
+            _game.Run();
         }
+
     }
 }

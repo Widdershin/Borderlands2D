@@ -50,8 +50,17 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ECS\System.cs" />
+    <Compile Include="ECS\Component.cs" />
+    <Compile Include="ECS\Components\Sprite.cs" />
+    <Compile Include="ECS\Entity.cs" />
+    <Compile Include="ECS\EntityRegistry.cs" />
+    <Compile Include="ECS\EntitySystem.cs" />
     <Compile Include="ECS\SystemsRegistry.cs" />
+    <Compile Include="ECS\Components\Position.cs" />
+    <Compile Include="ECS\Components\Velocity.cs" />
+    <Compile Include="ECS\Systems\MovementSystem.cs" />
+    <Compile Include="ECS\Systems\RenderSystem.cs" />
+    <Compile Include="Entities\TestThingy.cs" />
     <Compile Include="TextureManager.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Input\InputState.cs" />

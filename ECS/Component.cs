@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Borderlands2D.ECS
 {
-    public class Component
+    public abstract class Component
     {
     }
 }

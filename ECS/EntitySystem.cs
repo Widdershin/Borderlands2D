@@ -11,11 +11,6 @@ namespace Borderlands2D.ECS
         protected List<Type> _managedComponentTypes = new List<Type>();
         protected List<Entity> _entities = new List<Entity>();
 
-        protected EntitySystem()
-        {
-            SystemsRegistry.Register(this, _managedComponentTypes.ToArray());
-        }
-
         internal void AddEntity(Entity e)
         {
             var types = e.ComponentTypes;

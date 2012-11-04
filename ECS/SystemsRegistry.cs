@@ -32,10 +32,20 @@ namespace Borderlands2D.ECS
 
         private static List<EntitySystem> RetrieveSystemsForEntity(Entity e)
         {
+            var systems = new List<EntitySystem>();
             var types = e.Components.Select(comp => comp.GetType()).ToArray();
-            if (!TYPE_TO_SYSTEM_MAPINGS.ContainsKey(types))
+            var acceptableSystem = true;
+            foreach (var ts in TYPE_TO_SYSTEM_MAPINGS.Keys)
+            {
+                if (ts.Any(type => !types.Contains(type)))
+                    acceptableSystem = false;
+                if(acceptableSystem)
+                    systems.AddRange(TYPE_TO_SYSTEM_MAPINGS[ts]);
+                acceptableSystem = true;
+            }
+            if (systems.Count == 0)
                 throw new ArgumentException("Entity type is not bound to any Systems!", "e");
-            return TYPE_TO_SYSTEM_MAPINGS[types];
+            return systems;
         }
 
         public static void RemoveEntity(Entity e)
