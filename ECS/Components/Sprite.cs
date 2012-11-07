@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Borderlands2D.ECS.Components
 {
-    class Sprite : Component
+    class Sprite : IComponent
     {
         public Texture2D Texture { get; set; }
 

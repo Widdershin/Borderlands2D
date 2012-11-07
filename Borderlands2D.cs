@@ -25,7 +25,6 @@ namespace Borderlands2D
     {
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
-        Player _player;
 
         public Borderlands2D()
         {
@@ -64,8 +63,7 @@ namespace Borderlands2D
         /// </summary>
         private void PostInit()
         {
-            _player = new Player(new Vector2(100, 100));
-            EntityRegistry.CreateEntity<TestThingy>();
+            EntityRegistry.CreateEntity<Player>();
         }
 
         /// <summary>
