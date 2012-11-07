@@ -2,9 +2,9 @@ namespace Borderlands2D.ECS.Components
 {
     public class Rotation : IComponent
     {
-        public double Degrees;
+        public float Degrees;
 
-        public Rotation(double degrees = 0)
+        public Rotation(float degrees = 0)
         {
             Degrees = degrees;
         }
