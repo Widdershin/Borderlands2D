@@ -1,13 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Borderlands2D.ECS.Components;
 using Microsoft.Xna.Framework;
 
 namespace Borderlands2D.ECS.Systems
 {
-    class MovementSystem : EntitySystem
+    internal class MovementSystem : EntitySystem
     {
-
         public MovementSystem()
         {
             _managedComponentTypes.Add(typeof (Position));
@@ -17,8 +15,13 @@ namespace Borderlands2D.ECS.Systems
 
         public override void Update(GameTime time)
         {
-            foreach (var position in _entities.Select(e => e.GetComponent<Position>()))
-                position.Location = new Vector2(position.Location.X + 1, position.Location.Y);
+            foreach ( var components in _entities.Select(e => new {Position = e.GetComponent<Position>(), Velocity = e.GetComponent<Velocity>()})
+                                                 .Where(comps => comps.Velocity.Vector != new Vector2(0, 0)))
+            {
+                var normalized = components.Velocity.Vector.Normalized();
+                components.Position.Location = new Vector2(components.Position.X + normalized.X,
+                                                           components.Position.Y + normalized.Y);
+            }
         }
     }
 }
