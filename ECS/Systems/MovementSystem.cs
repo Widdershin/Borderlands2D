@@ -18,9 +18,9 @@ namespace Borderlands2D.ECS.Systems
             foreach ( var components in _entities.Select(e => new {Position = e.GetComponent<Position>(), Velocity = e.GetComponent<Velocity>()})
                                                  .Where(comps => comps.Velocity.Vector != new Vector2(0, 0)))
             {
-                var normalized = components.Velocity.Vector.Normalized();
-                components.Position.Location = new Vector2(components.Position.X + normalized.X,
-                                                           components.Position.Y + normalized.Y);
+                var velocity = components.Velocity.Vector;
+                components.Position.Location = new Vector2(components.Position.X + velocity.X,
+                                                           components.Position.Y + velocity.Y);
             }
         }
     }
