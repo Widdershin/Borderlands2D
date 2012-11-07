@@ -11,13 +11,9 @@ namespace Borderlands2D.ECS.Components
             Location = loc;
         }
 
-        public Position(int x, int y)
+        public Position(int x = -1, int y = -1)
         {
             Location = new Vector2(x, y);
-        }
-
-        public Position() : this(-1, -1)
-        {
         }
 
         public float X
