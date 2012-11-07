@@ -50,7 +50,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ECS\Component.cs" />
+    <Compile Include="ECS\Components\PlayerComponent.cs" />
+    <Compile Include="ECS\Components\Rotation.cs" />
+    <Compile Include="ECS\IComponent.cs" />
     <Compile Include="ECS\Components\Sprite.cs" />
     <Compile Include="ECS\Entity.cs" />
     <Compile Include="ECS\EntityRegistry.cs" />
@@ -60,15 +62,13 @@
     <Compile Include="ECS\Components\Velocity.cs" />
     <Compile Include="ECS\Systems\MovementSystem.cs" />
     <Compile Include="ECS\Systems\RenderSystem.cs" />
-    <Compile Include="Entities\TestThingy.cs" />
     <Compile Include="TextureManager.cs" />
-    <Compile Include="IEntity.cs" />
     <Compile Include="Input\InputState.cs" />
     <Compile Include="Input\InputHandlers\IInputHandler.cs" />
     <Compile Include="Input\InputHandlers\KeyBoardAndMouse.cs" />
     <Compile Include="Input\InputMethod.cs" />
     <Compile Include="Input\Inputs.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Entities\Player.cs" />
     <Compile Include="Borderlands2D.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,43 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Borderlands2D.ECS.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Borderlands2D.ECS.Systems
 {
-    class RenderSystem : EntitySystem
+    internal class RenderSystem : EntitySystem
     {
         private static RenderSystem instance;
-        public static RenderSystem Get { get { return instance; } }
 
         public RenderSystem()
         {
-            _managedComponentTypes.Add(typeof(Position));
-            _managedComponentTypes.Add(typeof(Sprite));
+            _managedComponentTypes.Add(typeof (Position));
+            _managedComponentTypes.Add(typeof (Sprite));
             SystemsRegistry.Register(this, _managedComponentTypes.ToArray());
             instance = this;
+        }
+
+        public static RenderSystem Get
+        {
+            get { return instance; }
         }
 
         public override void Update(GameTime time)
         {
         }
-        
-        private struct RenderWrapper
-        {
-            public Texture2D Texture;
-            public Entity Entity;
-        }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (
-                 var wrapper in
-                     _entities.Select(e => new RenderWrapper { Texture = e.GetComponent<Sprite>().Texture, Entity = e }).
-                         OrderBy(wrapper => wrapper.Texture))
-                spriteBatch.Draw(wrapper.Texture, wrapper.Entity.GetComponent<Position>().Location, Color.White);
+            foreach (var wrapper in _entities.Select(e => new {Sprite = e.GetComponent<Sprite>(), Entity = e})
+                                             .OrderBy(wrapper => wrapper.Sprite.Texture))
+            {
+                var rotationComp = wrapper.Entity.GetComponent<Rotation>();
+                var rotation = rotationComp == null ? 0 : rotationComp.Degrees;
+                spriteBatch.Draw(wrapper.Sprite.Texture, wrapper.Entity.GetComponent<Position>().Location, null,
+                                 Color.White, rotation, wrapper.Sprite.Offset, new Vector2(1, 1), SpriteEffects.None, 0f);
+            }
         }
     }
 }

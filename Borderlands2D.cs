@@ -63,7 +63,7 @@ namespace Borderlands2D
         /// </summary>
         private void PostInit()
         {
-            EntityRegistry.CreateEntity<Player>();
+            EntityRegistry.CreateEntity<Player>(new Vector2(100, 100));
         }
 
         /// <summary>

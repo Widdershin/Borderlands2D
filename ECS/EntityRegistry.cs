@@ -10,12 +10,12 @@ namespace Borderlands2D.ECS
     {
         private static readonly HashSet<Type> REGISTERED_TYPES = new HashSet<Type>(); 
 
-        public static T CreateEntity<T>() where T : Entity
+        public static T CreateEntity<T>(params object[] args) where T : Entity
         {
             var type = typeof (T);
             if(!REGISTERED_TYPES.Contains(type))
                 throw new ArgumentException("Type is not registered as an entity!");
-            var instance = Activator.CreateInstance<T>();
+            var instance = (T)Activator.CreateInstance(typeof(T), args);
             SystemsRegistry.AddEntity(instance);
             return instance;
         }
