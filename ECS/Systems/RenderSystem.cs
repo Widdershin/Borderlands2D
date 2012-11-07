@@ -7,19 +7,19 @@ namespace Borderlands2D.ECS.Systems
 {
     internal class RenderSystem : EntitySystem
     {
-        private static RenderSystem instance;
+        private static RenderSystem _instance;
 
         public RenderSystem()
         {
             _managedComponentTypes.Add(typeof (Position));
             _managedComponentTypes.Add(typeof (Sprite));
             SystemsRegistry.Register(this, _managedComponentTypes.ToArray());
-            instance = this;
+            _instance = this;
         }
 
         public static RenderSystem Get
         {
-            get { return instance; }
+            get { return _instance; }
         }
 
         public override void Update(GameTime time)

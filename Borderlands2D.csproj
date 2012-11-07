@@ -61,6 +61,7 @@
     <Compile Include="ECS\Components\Position.cs" />
     <Compile Include="ECS\Components\Velocity.cs" />
     <Compile Include="ECS\Systems\MovementSystem.cs" />
+    <Compile Include="ECS\Systems\PlayerSystem.cs" />
     <Compile Include="ECS\Systems\RenderSystem.cs" />
     <Compile Include="TextureManager.cs" />
     <Compile Include="Input\InputState.cs" />
