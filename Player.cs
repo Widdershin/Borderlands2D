@@ -47,15 +47,9 @@ namespace Borderlands2D
                 _position.X += Speed;
 
             MouseState ms = Mouse.GetState();
-<<<<<<< HEAD
             double mx = ms.Y - Position.Y;
             double my = ms.X - Position.X;
-            Rotation = (float)Math.Atan2(mx, my);
-=======
-            Double mx = ms.Y - Position.Y;
-            Double my = ms.X - Position.X;
             _rotation = (float)Math.Atan2(mx, my);
->>>>>>> 58ea5e79724e3246280bc527fa70e43e61109230
         }
 
         #endregion
